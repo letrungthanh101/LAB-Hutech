@@ -12,6 +12,9 @@ namespace BigSchool.Models
         public ApplicationUser Lecture { get; set; }
         [Required]
         [StringLength(255)]
+        public string LecturerId { get; set; }
+        [Required]
+        [StringLength(255)]
         public string Place { get; set; }
         public DateTime DateTime { get; set; }
         public Category Category { get; set; }
