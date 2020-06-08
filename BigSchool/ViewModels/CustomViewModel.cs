@@ -16,5 +16,6 @@ namespace BigSchool.ViewModels
         [Required]
         [ValidTime]
         public string Time { get; set; }
+
     }
 }
