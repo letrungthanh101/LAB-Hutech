@@ -9,7 +9,7 @@
 <h2>Attending</h2>
 
 <ul class="course">
-    @foreach (var course in Model.UpCommingCourses)
+    @foreach (var course in Model.UpcomingCourses)
     {
         <li>
             <div class="date">
@@ -32,7 +32,7 @@
                 {
                     var User_ID = User.Identity.GetUserId();
                     ApplicationDbContext _dbContext = new ApplicationDbContext();
-                    bool isGoing = _dbContext.Attendances.Any(a => a.CourseId == course.Id && a.AttendeeId == User_ID);
+                    bool isGoing = _dbContext.Attendances.Any(a => a.CourseId ==  course.Id && a.AttendeeId == User_ID);
 
                     if (isGoing)
                     {
