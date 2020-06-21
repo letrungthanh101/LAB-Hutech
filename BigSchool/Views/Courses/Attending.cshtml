@@ -1,21 +1,18 @@
 ﻿@model BigSchool.ViewModels.CoursesViewModel
 @using Microsoft.AspNet.Identity;
 @using BigSchool.Models;
-
-
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Attending";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-</style>
-<br />
-<ul class="course" id="native">
-    @foreach (var course in Model.UpcomingCourses)
+
+<h2>Attending</h2>
+
+<ul class="course">
+    @foreach (var course in Model.UpCommingCourses)
     {
-        <li class="card">
-            <h3 style="text-align:center; font-weight:bold; color:red">LỊCH KHAI GIẢNG</h3>
-            <div class="date" style="margin-left:80px">
+        <li>
+            <div class="date">
                 <div class="month">
                     @course.DateTime.ToString("MM")
                 </div>
@@ -23,32 +20,9 @@
                     @course.DateTime.ToString("dd")
                 </div>
             </div>
-            <br />
-            <img src="~/Content/img_course.jpg" style="width:100%" />
-            <div class="details" style="margin-left:90px">
-                <br /> <br /> <br />
+            <div class="details">
                 <span class="lecturer" style="font-weight:bold">
                     @course.Lecturer.Name
-                    @if (Model.ShowAction)
-                    {
-                        var User_ID = User.Identity.GetUserId();
-                        ApplicationDbContext _dbContext = new ApplicationDbContext();
-                        bool isFollowing = _dbContext.Followings.Any(f => f.FolloweeId == course.LecturerId && f.FollowerId == User_ID);
-                        if (isFollowing)
-                        {
-                            <button class="btn btn-info btn-sm js-toggle-follow" data-user-id="@course.LecturerId">
-                                Following
-                            </button>
-                        }
-                        else
-                        {
-                            <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerId">
-                                Follow
-                            </button>
-                        }
-
-                    }
-
                 </span>
                 <br />
                 <span class="category">
@@ -117,7 +91,6 @@
                         .done(function () {
                             button
                                 .removeClass("btn-default")
-                                .addClass("btn-info")
                                 .text("Following");
                         })
                         .fail(function () {
@@ -131,7 +104,6 @@
                     })
                         .done(function () {
                             button
-                                .removeClass("btn-info")
                                 .addClass("btn-default")
                                 .text("Follow");
                         })
@@ -144,4 +116,3 @@
 
     </script>
 }
-
